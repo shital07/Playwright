@@ -1,0 +1,70 @@
+version: "3.7"
+services:
+  selenium-hub:
+    image: selenium/hub:4.15.0
+    container_name: selenium-hub
+    shm_size: "1g"
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+    environment:
+      SE_SESSION_REQUEST_TIMEOUT: 1800
+    networks:
+      - selenium
+  chrome:
+    image: selenium/node-chrome:119.0
+    shm_size: "2g"
+    ports:
+      - "7900"
+    depends_on:
+      - selenium-hub
+    environment:
+      HUB_HOST: selenium-hub
+      SE_EVENT_BUS_HOST: selenium-hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+      SE_NODE_PORT: 4444
+      SE_NODE_GRID_URL: http://localhost:4444/wd/hub
+      SE_NODE_MAX_SESSIONS: 1
+      SCREEN_WIDTH: 1024
+      SCREEN_HEIGHT: 768
+      SCREEN_DEPTH: 24
+      DBUS_SESSION_BUS_ADDRESS: "/dev/null"
+      SE_OPTS: "--session-timeout 900"
+      JAVA_OPTS: "-Xmx2g"
+    links:
+      - selenium-hub:hub
+    volumes:
+      - "/dev/shm:/dev/shm"
+    networks:
+      - selenium
+  firefox:
+    image: selenium/node-firefox:119.0
+    shm_size: "2g"
+    ports:
+      - "7900"
+    depends_on:
+      - selenium-hub
+    environment:
+      HUB_HOST: selenium-hub
+      SE_EVENT_BUS_HOST: selenium-hub
+      SE_EVENT_BUS_PUBLISH_PORT: 4442
+      SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
+      SE_NODE_PORT: 4444
+      SE_NODE_GRID_URL: http://localhost:4444/wd/hub
+      SE_NODE_MAX_SESSIONS: 1
+      SCREEN_WIDTH: 1024
+      SCREEN_HEIGHT: 768
+      SCREEN_DEPTH: 24
+      DBUS_SESSION_BUS_ADDRESS: "/dev/null"
+      SE_OPTS: "--session-timeout 900"
+      JAVA_OPTS: "-Xmx2g"
+    links:
+      - selenium-hub:hub
+    volumes:
+      - "/dev/shm:/dev/shm"
+    networks:
+      - selenium
+networks:
+  selenium:
