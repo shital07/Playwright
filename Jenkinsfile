@@ -16,7 +16,7 @@ pipeline {
         stage('Run testCase') {
 
             steps {
-                echo 'Hello'
+                echo 'Starting Execution'
                 sh "mvn clean install"
             }
         }
@@ -31,6 +31,8 @@ pipeline {
                              reportName            : 'Automation Report',
                              reportTitles          : '',
                              useWrapperFileDirectly: false])
+
+                archiveArtifacts 'target/Index.html'
             }
         }
     }
