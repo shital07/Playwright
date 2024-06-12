@@ -8,7 +8,7 @@ pipeline{
 
             steps{
                 echo 'Hello'
-                sh "mvn clean"
+                sh "mvn clean install"
             }
         }
     }
