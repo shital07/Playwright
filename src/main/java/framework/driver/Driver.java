@@ -23,9 +23,8 @@ public final class Driver {
             switch (browserName) {
 
                 case "chrome": {
-                   // browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-                    browser = playwright.chromium().launch();
-                   break;
+                    browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+                    break;
 
                 }
                 case "firefox": {
