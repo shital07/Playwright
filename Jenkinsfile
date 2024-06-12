@@ -5,6 +5,7 @@ pipeline{
 
             steps{
                 echo 'Hello'
+                sh "mvn clean"
             }
         }
     }
