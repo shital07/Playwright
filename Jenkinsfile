@@ -32,7 +32,7 @@ pipeline {
                              reportTitles          : '',
                              useWrapperFileDirectly: false])
 
-                archiveArtifacts 'target/*.html'
+                archiveArtifacts '**/*.html'
             }
         }
     }
