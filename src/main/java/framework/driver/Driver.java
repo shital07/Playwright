@@ -72,7 +72,7 @@ public final class Driver {
 
     public static void loadUrl() {
         String url = ConfigFactory.getConfig().url();
-        DriverManager.getPage().navigate(url);
+        DriverManager.getPage().navigate("https://naveenautomationlabs.com/opencart/");
         ExtendReportManager.getTest().log(Status.INFO,"URL is loaded");
         //getPage().navigate("https://www.amazon.com");
     }
