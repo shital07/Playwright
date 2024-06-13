@@ -1,12 +1,13 @@
 pipeline {
    agent { dockerfile true }
    environment{
-      env='test'
+      env="test"
    }
     stages {
 
        stage('Dev Checkout'){
-                        git credentialsId: 'GitID',
+                        steps{
+git credentialsId: 'GitID',
                         url: 'https://github.com/shital07/Playwright',
                         branch: 'main'
                 echo 'Git checkout is successful'
@@ -14,6 +15,8 @@ pipeline {
           
           echo '${env}
 
+
+                        }
        }
 
         stage('Checkout git') {
