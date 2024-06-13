@@ -24,6 +24,7 @@ pipeline {
                     url: 'https://github.com/shital07/Playwright',
                     branch: 'main'
                 echo 'Git checkout is successful'
+                echo 'Testing Weebhook'
             }
         }
         stage('Run testCase') {
