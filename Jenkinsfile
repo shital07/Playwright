@@ -51,6 +51,15 @@ git credentialsId: 'GitID',
             }
         }
     }
+   post{
+always{
+   mail to: shital0711@gmail.com, subject: 'The Pipeline run :('
+}
+      success{
+mail to : shital0711@gmail.com,subject:'The pipeline ran sucessfully'
+      }
+      
+   }
 
 
 }
