@@ -1,30 +1,30 @@
-FROM jenkins/jenkins:lts
+FROM mcr.microsoft.com/playwright:v1.44.1-jammy
 
-USER root
+#RUN npm install -g maven
 
+# Install Node.js and npm
+# RUN npm install -g node@16
+# Update package lists and install Maven
 RUN apt-get update && \
-    apt-get install -y \
-        libglib2.0-0 \
-        libnss3 \
-        libnspr4 \
-        libdbus-1-3 \
-        libatk1.0-0 \
-        libatk-bridge2.0-0 \
-        libcups2 \
-        libdrm2 \
-        libatspi2.0-0 \
-        libx11-6 \
-        libxcomposite1 \
-        libxdamage1 \
-        libxext6 \
-        libxfixes3 \
-        libxrandr2 \
-        libgbm1 \
-        libxcb1 \
-        libxkbcommon0 \
-        libpango-1.0-0 \
-        libcairo2 \
-        libasound2 && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y wget gnupg ca-certificates && \
+    apt-get install -y openjdk-11-jdk maven
 
-USER jenkins
+# Verify installations
+RUN java -version
+RUN mvn -version
+RUN node -v && npm -v
+# Verify installations
+#RUN node -v && npm -v && mvn -v
+
+RUN npm cache clean --force
+# Install global npm packages
+RUN npm install -g playwright@1.44.0
+
+#RUN npm install
+#WORKDIR /playwright_java
+
+#COPY src /playwright_java/src
+#COPY pom.xml /playwright_java/pom.xml
+#COPY testng.xml /playwright_java/testng.xml
+
+RUN mvn -version

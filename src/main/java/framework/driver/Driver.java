@@ -23,7 +23,9 @@ public final class Driver {
             switch (browserName) {
 
                 case "chrome": {
-                    browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+
+                 //   browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+                    browser = playwright.chromium().launch();
                     break;
 
                 }
@@ -69,8 +71,9 @@ public final class Driver {
     }
 
     public static void loadUrl() {
-        DriverManager.getPage().navigate(ConfigFactory.getConfig().url());
-//        ExtendReportManager.getTest().log(Status.INFO,"Url loaded");
+        String url = ConfigFactory.getConfig().url();
+        DriverManager.getPage().navigate(url);
+        ExtendReportManager.getTest().log(Status.INFO,"URL is loaded");
         //getPage().navigate("https://www.amazon.com");
     }
 

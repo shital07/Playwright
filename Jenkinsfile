@@ -1,8 +1,5 @@
 pipeline {
-    agent any
-    tools {
-        maven 'mvn'
-    }
+    agent { dockerfile true }
     stages {
         stage('Checkout git') {
             steps {
