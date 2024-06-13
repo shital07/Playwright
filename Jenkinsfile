@@ -11,7 +11,7 @@ git credentialsId: 'GitID',
                         url: 'https://github.com/shital07/Playwright',
                         branch: 'main'
                 echo 'Git checkout is successful'
-          echo "${env.BUILD.ID}"
+          echo "${env.BUILD_ID}"
           
           echo "${env.ENV_VAR}"
 
