@@ -3,6 +3,11 @@ pipeline {
    environment{
       ENV_VAR= "test"
    }
+parameters{
+   choice(name:'TYPE',choices:['Regression','Snaity'],description:'Pick type of testing)
+
+}
+   
     stages {
 
        stage('Dev Checkout'){
@@ -29,7 +34,12 @@ git credentialsId: 'GitID',
             }
         }
         stage('Run testCase') {
-
+when{
+expression{
+${params.PERSON} == 'Regression'
+}
+}
+           
             steps {
                 echo 'Starting Execution'
                 sh "mvn clean install"
@@ -51,17 +61,6 @@ git credentialsId: 'GitID',
             }
         }
     }
-   post {
-        always {
-            mail to: 'shital0711@gmail.com',
-                subject: 'The Pipeline run :(',
-                body: "The pipeline has finished running."
-        }
-        success {
-            mail to: 'shital0711@gmail.com',
-                subject: 'The pipeline ran successfully',
-                body: "The pipeline has completed successfully."
-        }
-    }
+  
 
 }
