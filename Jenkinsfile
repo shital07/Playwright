@@ -1,7 +1,7 @@
 pipeline {
    agent { dockerfile true }
    environment{
-      env="test"
+      ENV_VAR= "test"
    }
     stages {
 
@@ -13,7 +13,7 @@ git credentialsId: 'GitID',
                 echo 'Git checkout is successful'
           echo '${env.BUILD.ID}
           
-          echo '${env}
+          echo '${env.ENV_VAR}
 
 
                         }
